@@ -1,0 +1,180 @@
+/* -------------------------------------------------
+   Base & theme variables
+   ------------------------------------------------- */
+:root {
+    --primary: #0077b6;
+    --secondary: #90e0ef;
+}
+
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* -------------------------------------------------
+   Light mode (default)
+   ------------------------------------------------- */
+body.light-mode {
+    background-color: #ffffff;
+    color: var(--primary);
+}
+body.light-mode .navbar { background-color: #ffffff; }
+body.light-mode .nav-link { color: var(--primary); }
+body.light-mode .section h2 { color: var(--primary); }
+body.light-mode .hero h1,
+body.light-mode .hero p { color: #ffffff; }
+
+/* -------------------------------------------------
+   Dark mode
+   ------------------------------------------------- */
+body.dark-mode {
+    background-color: #001f3f;
+    color: #ffffff;
+}
+body.dark-mode .navbar { background-color: #001f3f; }
+body.dark-mode .nav-link { color: #ffffff; }
+body.dark-mode .hero,
+body.dark-mode .hero h1,
+body.dark-mode .hero p,
+body.dark-mode .section h2 { color: #ffffff; }
+body.dark-mode .section:nth-child(even) { background-color: #003366; }
+
+/* -------------------------------------------------
+   Navbar
+   ------------------------------------------------- */
+.navbar {
+    transition: background-color 0.3s;
+}
+.navbar-brand { color: var(--primary); font-weight: bold; }
+body.dark-mode .navbar-brand { color: var(--secondary); }
+
+/* -------------------------------------------------
+   Hero (parallax)
+   ------------------------------------------------- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,119,182,.8), rgba(144,224,239,.8)),
+                url('https://via.placeholder.com/1920x1080?text=Water+Bottle+Background')
+                center/cover no-repeat;
+    background-attachment: fixed;               /* parallax */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.hero-content { z-index: 2; }
+.hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+.hero p  { font-size: 1.5rem; margin-bottom: 2rem; }
+
+.water-bottle {
+    width: 200px;
+    margin: 0 auto 2rem;
+    display: block;
+}
+
+/* -------------------------------------------------
+   Theme toggle SWITCH
+   ------------------------------------------------- */
+.theme-switch {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    cursor: pointer;
+}
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: var(--primary);   /* #0077b6 */
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Optional: add icons inside the switch */
+.slider:after {
+    content: 'Light';
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    font-size: .7rem;
+    opacity: .6;
+    transition: .3s;
+}
+input:checked + .slider:after {
+    content: 'Dark';
+    left: 30px;
+    opacity: .8;
+}
+
+/* -------------------------------------------------
+   Sections
+   ------------------------------------------------- */
+.section {
+    padding: 5rem 0;
+    text-align: center;
+}
+.section:nth-child(even) { background: #f8f9fa; }   /* light mode */
+.section h2 { margin-bottom: 1.5rem; }
+
+/* -------------------------------------------------
+   Responsive tweaks
+   ------------------------------------------------- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero p  { font-size: 1.2rem; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero { background-attachment: scroll; }
+}
+
+/* ---------- COUNTER STYLES ---------- */
+.counter {
+  font-weight: bold;
+  color: #90e0ef !important; /* matches your theme */
+  transition: color 0.3s ease;
+}
+
+/* Optional: Add a little bounce on count */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.counter.counting {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.recolour {
+    color: #0077b6;
+}
